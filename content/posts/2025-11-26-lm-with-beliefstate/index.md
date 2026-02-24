@@ -3,14 +3,16 @@ title: "Language Models with Belief State Generalizes Much Better during Pre-tra
 date: 2025-11-26
 author: "Sunny Sanyal"
 editor: "Dr. Mike Mozer"
-summary: "A small proof-of-concept study on integrating differentiable belief states into GPT-style decoders."
+#summary: "A small proof-of-concept study on integrating differentiable belief states into GPT-style decoders."
 tags:
   - language models
   - belief state
+  - pre-training
+  - Transformer
 draft: false
 ---
 
-> *A short technical note on experimenting with “belief states” inside GPT-style decoders—adding a small, persistent memory that evolves over time and influences next-token prediction.*
+> *We introduce “belief state” in transformer blocks which serves as a persistent memory that carries information across time and sequences. GPT-style decoder language models augmented with belief state generalizes much better during pre-training.*
 
 ## Abstract
 
