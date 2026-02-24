@@ -9,7 +9,7 @@ tags:
   - belief state
   - pre-training
   - Transformer
-draft: false
+draft: true
 ---
 
 > *We introduce “belief state” in transformer blocks which serves as a persistent memory that carries information across time and sequences. GPT-style decoder language models augmented with belief state generalizes much better during pre-training.*

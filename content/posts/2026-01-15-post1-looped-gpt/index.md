@@ -2,7 +2,6 @@
 title: "Looped-GPT: Looping During Pre-training Generalizes Better"
 date: 2026-01-12
 author: "Sunny Sanyal"
-editor: "Dr. Mike Mozer"
 tags:
   - language models
   - Transformer
@@ -10,21 +9,18 @@ tags:
   - looped transformers
   - compute efficiency
 draft: false
-weight: 1
 ---
 
-> *Looped-GPT augments a standard GPT architecture with a reverse residual connection that feeds deeper representations back to earlier layers. Across multiple pre-training experiments, looping consistently improves generalization—same-size Looped-GPT models outperform standard baselines at matched step and token budgets, and under a fixed compute budget a 355M Looped-GPT matches a 770M GPT-2.*
+> *Looped-GPT tweaks a standard GPT architecture with a reverse residual connection (looping mechanism) that feeds deeper representations back to earlier layers. Across multiple pre-training experiments, looping consistently improves generalization—same-size Looped-GPT models outperform standard baselines at matched step and token budgets, and under a fixed compute budget a 355M Looped-GPT matches a 770M GPT-2.*
 
 ---
 
 <p align="left">
-  <img src="images/Looped-GPT.png" alt="Looped-GPT logo" width="300">
+  <img src="images/Looped-GPT.png" alt="Looped-GPT logo" width="600">
 </p>
 
 **Looped-GPT** is a minimal, lightweight, and highly hackable implementation of **Looped Transformer** built on top of GPT architecture.
 
-**First posted:** January 12, 2026 \
-**Updated on:** February 8, 2026
 
 ---
 
@@ -149,34 +145,12 @@ Figure 5 shows a negative result worth being honest about: a standard GPT-2 Medi
 
 **Optimization perspective.** Recall that residual connections act as smoothing operators for [loss landscapes](https://arxiv.org/abs/1712.09913). The standard GPT's loss landscape should be more jagged compared to its Looped counterpart. Hence we can intuitively assume that the Looped-GPT loss landscape is smoother, making optimization easier.
 
-## Reproduce Our Results
-
-### Dependencies
-
-- Python 3.10
-- PyTorch 2.5
-- datasets
-- tiktoken
-
-### Prepare Data
-
-Prepare the [OpenWebText](https://huggingface.co/datasets/openwebtext) data following [nanoGPT](https://github.com/karpathy/nanoGPT/):
-
-```
-$ python data/openwebtext/prepare.py
-```
-
-### Train Looped-GPT (Single GPU)
-
-```
-$ python train.py
-```
 
 ## Closing Thoughts
 
 ### Limitations of this Codebase
 
-- This codebase is not optimized for inference.
+- Looped-GPT is currently not inference friendly. (Wait for the next version.)
 - This pre-training approach may require additional compute; however, this is also true for other architectures such as MoEs. If an architecture or training recipe achieves consistently better generalization, it deserves to be studied carefully despite higher compute costs.
 
 > **Summary: Looping during pre-training generalizes better.**
@@ -190,9 +164,6 @@ $ python train.py
 - [Scaling Latent Reasoning via Looped Language Models](https://arxiv.org/abs/2510.25741)
 - [Pretraining Language Models to Ponder in Continuous Space](https://arxiv.org/abs/2505.20674)
 
-## Acknowledgements
-
-This codebase is extended following [nanoGPT](https://github.com/karpathy/nanoGPT/).
 
 ## Citation
 

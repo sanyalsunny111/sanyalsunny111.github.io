@@ -1,0 +1,21 @@
+{{- with site.Params.homeInfoParams }}
+<article class="first-entry home-info">
+  <div style="display:flex; align-items:flex-start; gap:2rem; flex-wrap:wrap;">
+    <div style="flex:1; min-width:200px;">
+      <header class="entry-header">
+        <h1>{{ .Title | markdownify }}</h1>
+      </header>
+      <section class="entry-content">
+        {{- trim .Content "\n" | markdownify -}}
+      </section>
+      <footer class="entry-footer">
+        {{- partial "social_icons.html" (dict "icons" site.Params.socialIcons "svg" $.Site.Data.svg "MaskedEmail" site.Params.MaskedEmail "Email" site.Params.Email) -}}
+      </footer>
+    </div>
+    <div style="flex-shrink:0;">
+      <img src="/my_pic.jpg" alt="Sunny Sanyal"
+           style="width:170px; height:210px; object-fit:cover; object-position:top; border-radius:6px; border:1px solid var(--border);" />
+    </div>
+  </div>
+</article>
+{{- end -}}

@@ -42,9 +42,11 @@ params:
 
   # Home box on landing page
   homeInfoParams:
-    Title: "👋 Hello"
+    Title: "Sunny Sanyal"
     Content: >
-      Hi, I'm Sunny Sanyal. I study and think about language models.
+      Hi 👋 I am Sunny. I am interested in understanding and improving language models through training recipes.
+
+      I am currently on the job market, seeking both industry and postdoctoral positions.
 
   # Social icons
   socialIcons:
