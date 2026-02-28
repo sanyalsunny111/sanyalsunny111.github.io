@@ -31,10 +31,6 @@ The key insight is that the architecture need not change at all: a two-stage tra
 
 ## Personal Story and Anthropomorphizing Model Training
 
-<p align="left">
-  <img src="images/child_image.png" alt="Teacher teaching addition to a child and tiny robot" width="600">
-</p>
-
 I was leetcode-maxing for my job search, but I broke my own vow and took a break from my regular routine. In my research I usually work on methods that *scale*, but this challenge gave me an opportunity to think about “un-scaling,” which turned out to be pretty interesting too. This post by Dimitris Papailiopoulos ([link](https://x.com/DimitrisPapail/status/2027059284102553707?s=20)) piqued my interest. He started a game and put up an open challenge: find the smallest transformer that can do 10-digit addition. Naturally, everyone (including me) jumped into searching for smaller transformer-based architectures. After a few experiments, I realized architecture alone might not be the right way to think about this problem.
 
 Take a 4-year-old kid learning addition for the first time. A good teacher would start with 2-digit addition and only gradually introduce 10-digit addition. I know that, for most ML researchers, this kind of argument and anthropomorphizing machine learning can sound ridiculous. But last year I had a distinct opportunity to work with and talk to widely respected cognitive science and ML researchers, and those interactions have heavily influenced how I now think about model training. I’ve also been told that Prof. Hinton, at one point, considered himself a cognitive scientist. At this point I’m at least convinced of a softer claim: machines may not learn the same way humans do, but using intuitions from human learning and cognitive science is not a terrible way to think about how to train models.
