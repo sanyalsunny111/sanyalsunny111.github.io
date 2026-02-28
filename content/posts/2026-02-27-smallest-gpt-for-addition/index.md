@@ -191,6 +191,6 @@ Claude wrote all code and also helped in writing.
   title        = {Curriculum Pretraining Enables 10-Digit Addition for a 296-Parameter GPT with 99% Accuracy},
   year         = {2026},
   note         = {Blog},
-  url          = {}
+  url          = {https://sanyalsunny111.github.io/posts/2026-02-27-smallest-gpt-for-addition/}
 }
 ```
