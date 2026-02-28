@@ -9,7 +9,7 @@ tags:
   - self-attention
   - deep learning
   - language models
-draft: false
+draft: true
 ---
 
 > *Attention is the most celebrated mechanism in modern deep learning, yet most practitioners treat it as a black box. This post strips it down to first principles, builds intuition from scratch, and honestly confronts some of its messier realities.*

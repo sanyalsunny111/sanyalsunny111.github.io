@@ -8,7 +8,7 @@ tags:
   - pre-training
   - looped transformers
   - compute efficiency
-draft: false
+draft: true
 ---
 
 > *Looped-GPT tweaks a standard GPT architecture with a reverse residual connection (looping mechanism) that feeds deeper representations back to earlier layers. Across multiple pre-training experiments, looping consistently improves generalization—same-size Looped-GPT models outperform standard baselines at matched step and token budgets, and under a fixed compute budget a 355M Looped-GPT matches a 770M GPT-2.*
