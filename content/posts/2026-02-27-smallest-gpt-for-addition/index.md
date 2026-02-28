@@ -10,6 +10,10 @@ tags:
   - arithmetic
   - weight averaging
   - deep learning
+cover:
+  image: "images/child_image.png"
+  alt: "Teacher teaching addition to a child and tiny robot"
+  relative: true
 draft: false
 ---
 
