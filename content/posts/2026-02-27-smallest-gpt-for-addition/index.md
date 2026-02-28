@@ -1,5 +1,5 @@
 ---
-title: "Curriculum Pretraining Enables 10-Digit Addition for a 296-Parameter GPT with 99\% Accuracy"
+title: "Curriculum Pretraining Enables 10-Digit Addition for a 296-Parameter GPT with 99% Accuracy"
 date: 2026-02-27
 author: "Sunny Sanyal"
 tags:
