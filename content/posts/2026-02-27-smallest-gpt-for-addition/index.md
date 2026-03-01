@@ -141,8 +141,6 @@ Fine-tuning specialises the pre-trained model on fixed 10-digit addition, using 
 - **Dataset:** 10k train / 10k test samples of exactly 10-digit addition
 - **Optimizer:** AdamW, same LR schedule as pre-training (100k steps)
 - **LAWA:** Every 2000 steps a weight snapshot is pushed onto a rolling buffer of size `k = 5`; the averaged model is evaluated alongside the live model
-- **Multi-seed:** Runs with seeds `{0, 1, 42, 222, 1337}`; logs saved to `logs/toygpt_lawa_seed=<seed>.txt`
-- **Checkpoint:** Best model by test sequence accuracy → `ckpt/toygpt_ft_seed=<seed>.pt`
 
 The motivation for LAWA [2] here is simple: at the fine-tuning stage, the training loss oscillates more than it did during curriculum pre-training. Averaging recent weight snapshots smooths over these oscillations and reliably pushes test accuracy higher than any single checkpoint.
 
