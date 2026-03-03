@@ -26,7 +26,7 @@ draft: false
 
 Can a transformer with fewer than 300 parameters reliably solve 10-digit addition? 
 The answer turns out to be yes if you train it right. This post describes `AdditionGPT`, a minimal causal transformer that treats digit-wise addition as a sequence classification task. 
-The key insight is that the architecture need not change at all: a two-stage training recipe, curriculum-style pre-training on variable-length addition, followed by fine-tuning with Latest Weight Averaging (LAWA) is sufficient for a sub-300-parameter GPT to achieve 99% test accuracy on 10-digit addition.
+The key insight is that the architecture need not change at all: a two-stage training recipe, curriculum-style pre-training on variable-length addition, followed by fine-tuning is sufficient for a sub-300-parameter GPT to achieve 99% test accuracy on 10-digit addition.
 
 
 ## Personal Story and Anthropomorphizing Model Training
@@ -134,19 +134,18 @@ Pre-training uses variable-length addition examples (2 to 10 digits). This acts 
 - **Schedule:** 1000-step linear warmup → cosine decay over 100k steps
 - **Gradient clipping:** norm = 1.0
 
-### Stage 2 — Fine-tuning with LAWA
+### Stage 2 — Fine-tuning
 
 Fine-tuning specialises the pre-trained model on fixed 10-digit addition, using **LAWA (Latest Weight Averaging)** to stabilise training.
 
 - **Dataset:** 10k train / 10k test samples of exactly 10-digit addition
 - **Optimizer:** AdamW, same LR schedule as pre-training (100k steps)
-- **LAWA:** Every 2000 steps a weight snapshot is pushed onto a rolling buffer of size `k = 5`; the averaged model is evaluated alongside the live model
-
-The motivation for LAWA [2] here is simple: at the fine-tuning stage, the training loss oscillates more than it did during curriculum pre-training. Averaging recent weight snapshots smooths over these oscillations and reliably pushes test accuracy higher than any single checkpoint.
 
 ## Results
 
-Despite having only 296 parameters, the GPT model reliably learns 10-digit addition end-to-end. A curriculum based pretraining stage followed by fine-tuning is sufficient for a sub-300-parameter GPT to solve the task.
+We trained two models, each with five different random seeds. First, we trained the GPT using our recipe (Ours): curriculum pretraining followed by fine-tuning. 
+Next, we trained a baseline model (Baseline) without curriculum pretraining i.e. it was trained directly on the 10-digit addition task from scratch. The baseline model struggled to consistently surpass 97% test sequence accuracy. In contrast, our GPT model reliably learns 10-digit addition end-to-end with over 99% test sequence accuracy.
+These results show that a curriculum-based pretraining stage, followed by fine-tuning, is sufficient for a sub-300-parameter GPT to solve the 10 digit addition task with high accuracy.
 
 <p align="left">
   <img src="images/toyGPT-296params.png" alt="GPT (296 params) training curve" width="800">
@@ -154,11 +153,12 @@ Despite having only 296 parameters, the GPT model reliably learns 10-digit addit
   <em><strong>Figure 1.</strong> Test accuracy (10-digit sequence) vs. training steps for a standard 296-parameter GPT model. Without altering the architecture, we modify only the training recipe: the model is pretrained using a curriculum from 2-digit to 10-digit addition and subsequently fine-tuned on the 10-digit task, achieving 99% accuracy.</em>
 </p>
 
+Note: We have also applied LAWA (Latest Weight Averaging) [2] during finetuning for both 'Ours' and 'Baseline' but the results presented here are the ones without LAWA.
 
 ## Closing Thoughts
 
 The main takeaway is that **training recipes** matter. Even when the architecture is fixed and tiny, changing how the model sees the data can make the difference between failing and reliably generalizing. In large LLMs, scale can sometimes hide an inefficient learning process; in constrained settings like this one, the recipe is often the whole game. 
-Here, a simple curriculum (short-to-long addition) plus LAWA during fine-tuning was enough to push a 296-parameter GPT to reliably learn  two 10-digit addition with a 99% accuracy without any fancy architectural changes.
+Here, a simple curriculum (short-to-long addition) pre-training along with fine-tuning was enough to push a 296-parameter GPT to reliably learn two 10-digit addition with a 99% accuracy without any fancy architectural changes.
 
 ## Code
 
@@ -166,8 +166,13 @@ The code, logs and checkpoints are available at this [repository](https://github
 
 ## Contributions
 
-Sunny Sanyal conceived the idea of curriculum-based pretraining combined with LAWA (Latest Weight Averaging) during fine-tuning, and ran all experiments himself. 
+Sunny Sanyal conceived the idea of curriculum-based pretraining and fine-tuning, and ran all experiments himself. 
 Claude wrote all code and also helped in writing.
+
+## Acknowledgement
+
+Thanks Mike (Dr. Michael C. Mozer) for the review, helpful discussion and feedback.
+
 
 ## References
 
