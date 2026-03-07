@@ -14,7 +14,6 @@ cover:
   relative: true
 math: true
 draft: false
-weight: 1
 ---
 
 > *Looped-GPT — a language model trained with depth recurrence that enables iterative activation refinement via a reverse residual connection. 
@@ -30,6 +29,14 @@ I also provide a **minimal and hackable implementation** ([codebase](https://git
 
 
 ## Looped-GPT Pre-Training
+
+
+<p align="left">
+  <img src="images/main_figure.png" alt="GPT-2 OpenWebText training curve" width="600">
+  <br>
+  <em><strong>Figure 1.</strong> Looped-GPT architecture visualization.</em>
+</p>
+
 
 Looped-GPT has **reverse residual connection** that feeds the output of the final transformer block (layer) back into the input embedding. 
 Unlike standard Transformer residuals, which operate in the forward direction by connecting a module's input to its output or 
@@ -138,7 +145,7 @@ In **Figure 5**, we observe a negative result: a standard GPT-2 Medium (355M), t
 Even so, these results should spark interest in the modeling and pre-training community especially for researchers with large-scale compute resources toward running broader scaling experiments to better understand when looping helps and when data wins.
 
 <p align="left">
-  <img src="Figures/flops_vs_val_loss_v2.png" alt="GPT-2 OpenWebText training curve" width="600">
+  <img src="images/flops_vs_val_loss_v2.png" alt="GPT-2 OpenWebText training curve" width="600">
   <br>
   <em><strong>Figure 5.</strong> Validation loss vs. training FLOPs for a standard GPT-2 Medium (355M) model (<strong>Baseline</strong>) and same-size Looped-GPT models (<strong>Ours</strong>) with loop steps (<strong>K = 4</strong>). 
 The Baseline is trained with 18 billion tokens (~2 epochs) whereas Looped-GPT is trained with 9 billion tokens (~1 epoch). 
@@ -164,16 +171,16 @@ standard GPT.
 - This pre-training approach may require additional compute; however, this is also true for other architectures such as MoEs. If an architecture or training recipe achieves consistently better generalization, it deserves 
 to be studied carefully despite higher compute costs.
 
-
-<div style="border-left: 4px solid #60a5fa; background: #eff6ff; padding: 14px 16px; border-radius: 8px; margin: 1em 0;">
-  <strong>Summary: Looping during pre-training generalizes better</strong>
-  <p style="margin-top: 10px; margin-bottom: 10px;">
-    Across our pre-training experiments, looping consistently improves generalization. Same-size <strong>355M Looped-GPT</strong> models with <strong>K = 2</strong> and <strong>K = 4</strong> outperform a standard <strong>355M GPT-2</strong> baseline at matched step and token budgets, and on <strong>FineWeb</strong>, a <strong>282M Looped-LLAMA</strong> similarly beats its baseline.
+<div style="border-left: 4px solid #60a5fa; background: #eff6ff; color: #111827; padding: 14px 16px; border-radius: 8px; margin: 1em 0;">
+  <strong style="color: #0f172a;">Summary: Looping during pre-training generalizes better</strong>
+  <p style="margin-top: 10px; margin-bottom: 10px; color: #111827;">
+    Across our pre-training experiments, looping consistently improves generalization. Same-size <strong style="color: #0f172a;">355M Looped-GPT</strong> models with <strong style="color: #0f172a;">K = 2</strong> and <strong style="color: #0f172a;">K = 4</strong> outperform a standard <strong style="color: #0f172a;">355M GPT-2</strong> baseline at matched step and token budgets, and on <strong style="color: #0f172a;">FineWeb</strong>, a <strong style="color: #0f172a;">282M Looped-LLAMA</strong> similarly beats its baseline.
   </p>
-  <p style="margin-top: 10px; margin-bottom: 0;">
-    Notably, under a fixed compute budget (~<strong>4 × 10¹⁹ FLOPs</strong>), <strong>Looped-GPT (355M, K = 4)</strong> achieves validation loss comparable to a much larger <strong>770M GPT-2</strong>, highlighting strong <strong>parameter and compute efficiency</strong> in this regime.
+  <p style="margin-top: 10px; margin-bottom: 0; color: #111827;">
+    Notably, under a fixed compute budget (~<strong style="color: #0f172a;">4 × 10¹⁹ FLOPs</strong>), <strong style="color: #0f172a;">Looped-GPT (355M, K = 4)</strong> achieves validation loss comparable to a much larger <strong style="color: #0f172a;">770M GPT-2</strong>, highlighting strong <strong style="color: #0f172a;">parameter and compute efficiency</strong> in this regime.
   </p>
 </div>
+
 
 ## Code
 
