@@ -14,6 +14,7 @@ cover:
   relative: true
 math: true
 draft: false
+weight: 1
 ---
 
 > *Looped-GPT — a language model trained with depth recurrence that enables iterative activation refinement via a reverse residual connection. 
@@ -38,7 +39,7 @@ I also provide a **minimal and hackable implementation** ([codebase](https://git
 </p>
 
 
-Looped-GPT has **reverse residual connection** that feeds the output of the final transformer block (layer) back into the input embedding. 
+Looped-GPT has **reverse residual connection** that feeds the output of the final transformer block (layer) back into the input embedding (refer Figure 1). 
 Unlike standard Transformer residuals, which operate in the forward direction by connecting a module's input to its output or 
 by connecting early layers to deeper ones via highway connections, Looped-GPT reverses this flow: a deeper representation is 
 residually injected into a lower layer. During training, the model performs (K) forward passes i.e. K-1 refinement steps followed by a final forward pass and a single backward pass, 
@@ -200,11 +201,11 @@ The code is available at this [repository](https://github.com/sanyalsunny111/Loo
 ## Citation
 
 ```bibtex
-@misc{sanyal2026@Looped-GPT,
+@misc{sanyal2026@looped-gpt,
   author = {Sunny Sanyal},
   title = {Looped-GPT: Looping During Pre-training improves Generalization},
   year = {2026},
-  publisher = {GitHub},
+  publisher = {Blog},
   url = {https://sanyalsunny111.github.io/posts/2026-01-15-post1-looped-gpt/}
 }
 ```
