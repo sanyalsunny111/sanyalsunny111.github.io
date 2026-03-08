@@ -85,7 +85,7 @@ recurrence and not timewise recurrence we call this BPTD. We have not applied an
 
 ---
 
-## Pre-training Results (355M GPT2 model with OpenWebText)
+## Pre-training Results (355M GPT model with OpenWebText)
 
 We trained a standard GPT-2 model with 355M parameters (**Baseline**) on OpenWebText which has 9B tokens. 
 The model was trained with an effective batch size of 394K tokens and processed 15.73B tokens in total via data repetition. 
@@ -201,7 +201,7 @@ The code is available at this [repository](https://github.com/sanyalsunny111/Loo
 ## Citation
 
 ```bibtex
-@misc{sanyal2026@looped-gpt,
+@misc{sanyal2026looped-gpt,
   author = {Sunny Sanyal},
   title = {Looped-GPT: Looping During Pre-training improves Generalization},
   year = {2026},
